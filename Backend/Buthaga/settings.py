@@ -7,10 +7,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-1!2lkk5!byfd3+b!b(x)i668@1uavfwj5e&8+lh^umjie=*^5m'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = []
+DEBUG =  False
+
+ALLOWED_HOSTS = ['your-domain.com', '207.180.201.93']
 
 # Application definition
 INSTALLED_APPS = [
@@ -35,6 +35,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 AUTH_USER_MODEL = 'MahlakuApp.User'
@@ -105,6 +106,8 @@ USE_TZ = True
 
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -116,4 +119,4 @@ CORS_ALLOWED_ORIGINS = [
 
 # Media files
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media', 'static')
