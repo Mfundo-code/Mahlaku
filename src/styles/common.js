@@ -1,4 +1,4 @@
-export const baseApiUrl = 'http://localhost:8000/api';
+export const baseApiUrl = 'http://207.180.201.93/api';
 
 export const categoryColors = {
   'School Uniform': '#4e73df',
