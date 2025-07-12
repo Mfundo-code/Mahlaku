@@ -6,8 +6,8 @@ import mimetypes
 mimetypes.add_type("text/css", ".css", True)
 mimetypes.add_type("application/javascript", ".js", True)
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'
-BASE_DIR = Path(__file__).resolve().parent.parent.parent  # Fixed to go up 3 levels
+
+BASE_DIR = Path(__file__).resolve().parent.parent  
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-1!2lkk5!byfd3+b!b(x)i668@1uavfwj5e&8+lh^umjie=*^5m'
@@ -29,15 +29,15 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'corsheaders',
-    'whitenoise.runserver_nostatic',  # Add this
+    'whitenoise.runserver_nostatic', 
 ]
 
-# Corrected middleware order - CRITICAL FIX
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Must be immediately after SecurityMiddleware
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',       # CorsMiddleware before CommonMiddleware
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -58,11 +58,11 @@ REST_FRAMEWORK = {
 
 ROOT_URLCONF = 'Buthaga.urls'
 
-# React integration - FIXED
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'build'],  # Points to React build directory
+        'DIRS': [BASE_DIR / 'build'], 
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -111,15 +111,15 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'  # Collected static files directory
 
-# React static files configuration
+# React static files configuration - CORRECTED
 STATICFILES_DIRS = [
-    BASE_DIR / 'build/static',  # Where React puts its static assets
+    BASE_DIR / 'build/static',  
 ]
 
 # WhiteNoise configuration
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-WHITENOISE_ROOT = BASE_DIR / 'build'  # Where index.html is located
-WHITENOISE_INDEX_FILE = True  # Serve index.html for unknown paths
+WHITENOISE_ROOT = BASE_DIR / 'build' 
+WHITENOISE_INDEX_FILE = True 
 
 # Media files
 MEDIA_URL = '/media/'
