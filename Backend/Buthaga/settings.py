@@ -8,13 +8,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-1!2lkk5!byfd3+b!b(x)i668@1uavfwj5e&8+lh^umjie=*^5m'
 
 
-DEBUG =  False
+DEBUG = False
+
 
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     'your-domain.com',
-    '207.180.201.93'
+    '207.180.201.93',
 ]
 
 # Application definition
@@ -122,8 +123,21 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "https://207.180.201.93",
     "http://207.180.201.93",
+    "http://127.0.0.1:8000",
+    "http://207.180.201.93:3000",
+    "http://127.0.0.1:8000",
+]
+CSRF_TRUSTED_ORIGINS = [
+    "http://207.180.201.93",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://207.180.201.93:3000",
 ]
 
 # Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media', 'static')
+
+
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
