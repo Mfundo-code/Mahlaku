@@ -10,7 +10,7 @@ SECRET_KEY = 'django-insecure-1!2lkk5!byfd3+b!b(x)i668@1uavfwj5e&8+lh^umjie=*^5m
 
 DEBUG =  False
 
-ALLOWED_HOSTS = ['your-domain.com', '207.180.201.93']
+ALLOWED_HOSTS = ['locahost', 'your-domain.com', '207.180.201.93']
 
 # Application definition
 INSTALLED_APPS = [
