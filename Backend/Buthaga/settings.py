@@ -1,5 +1,8 @@
 from pathlib import Path
 import os
+import mimetypes
+mimetypes.add_type("text/css", ".css", True)
+mimetypes.add_type("application/javascript", ".js", True)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -106,7 +109,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # React static files configuration
 STATICFILES_DIRS = [
-    BASE_DIR /'build/static',  # React static files
+    BASE_DIR /'build/static',  
 ]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
@@ -125,3 +128,39 @@ CORS_ALLOWED_ORIGINS = [
     "http://207.180.201.93",
 ]
 
+# Buthaga/settings.py
+
+# ... existing imports ...
+
+# Add this at the top
+import mimetypes
+mimetypes.add_type("text/css", ".css", True)
+mimetypes.add_type("application/javascript", ".js", True)
+
+# ... existing settings ...
+
+# Update static files configuration
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [
+    BASE_DIR / 'build/static',
+]
+
+# Update templates configuration
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [BASE_DIR / 'build'],  # Point to build directory
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+WHITENOISE_ROOT = BASE_DIR / 'build'  
