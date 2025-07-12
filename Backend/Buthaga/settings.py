@@ -106,7 +106,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # React static files configuration
 STATICFILES_DIRS = [
-    BASE_DIR / 'build/static',  # React static files
+    BASE_DIR /'build/static',  # React static files
 ]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
