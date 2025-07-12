@@ -15,8 +15,10 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     'bothakgabjamahlako.com',
+    'www.bothakgabjamahlako.com',
     '207.180.201.93',
 ]
+
 
 # Application definition
 INSTALLED_APPS = [
@@ -127,6 +129,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://207.180.201.93:3000",
     "http://127.0.0.1:8000",
     "https://bothakgabjamahlako.com",
+    "https://www.bothakgabjamahlako.com",
 ]
 CSRF_TRUSTED_ORIGINS = [
     "http://207.180.201.93",
@@ -135,6 +138,7 @@ CSRF_TRUSTED_ORIGINS = [
     "http://207.180.201.93:3000",
     "http://bothakgabjamahlako.com",
     "https://bothakgabjamahlako.com",
+    "https://www.bothakgabjamahlako.com",
 ]
 
 # Media files
