@@ -1,14 +1,14 @@
 from pathlib import Path
-import os  
+import os
 
-
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-1!2lkk5!byfd3+b!b(x)i668@1uavfwj5e&8+lh^umjie=*^5m'
 
-
-DEBUG =  False
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = False
 
 ALLOWED_HOSTS = ['your-domain.com', '207.180.201.93']
 
@@ -35,7 +35,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 AUTH_USER_MODEL = 'MahlakuApp.User'
@@ -51,10 +51,11 @@ REST_FRAMEWORK = {
 
 ROOT_URLCONF = 'Buthaga.urls'
 
+# React integration
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'react_build'],  # Point to React build directory
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,8 +70,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Buthaga.wsgi.application'
 
-
-
+# Database
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -78,7 +78,7 @@ DATABASES = {
     }
 }
 
-
+# Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -94,30 +94,42 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-
+# Internationalization
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
-
-STATIC_URL = 'static/'
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# React static files configuration
+STATICFILES_DIRS = [
+    BASE_DIR / 'build/static',  # React static files
+]
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+# Media files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# CORS configuration
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000", 
     "http://127.0.0.1:3000",
     "https://207.180.201.93",
+    "http://207.180.201.93",
 ]
 
-# Media files
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media', 'static')
+# Security settings for production
+if not DEBUG:
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_SSL_REDIRECT = False
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
