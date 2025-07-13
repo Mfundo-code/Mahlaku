@@ -1,15 +1,15 @@
 from pathlib import Path
-import os  
+import os
 
-
+# Build paths inside the project like this: BASE_DIR / 'subdir'
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# React build directory (place your React build folder here)
+REACT_BUILD_DIR = BASE_DIR / 'frontend_build'
 
 SECRET_KEY = 'django-insecure-1!2lkk5!byfd3+b!b(x)i668@1uavfwj5e&8+lh^umjie=*^5m'
 
-
 DEBUG = False
-
 
 ALLOWED_HOSTS = [
     'localhost',
@@ -18,7 +18,6 @@ ALLOWED_HOSTS = [
     'www.bothakgabjamahlako.com',
     '207.180.201.93',
 ]
-
 
 # Application definition
 INSTALLED_APPS = [
@@ -59,10 +58,11 @@ REST_FRAMEWORK = {
 
 ROOT_URLCONF = 'Buthaga.urls'
 
+# Updated TEMPLATES configuration
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [REACT_BUILD_DIR],  # Point to React build directory
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -77,7 +77,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Buthaga.wsgi.application'
 
-
+# Database
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -85,7 +85,7 @@ DATABASES = {
     }
 }
 
-
+# Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -101,24 +101,30 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+# Internationalization
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
-
-STATIC_URL = 'static/'
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Add React static files to directories
+STATICFILES_DIRS = [
+    REACT_BUILD_DIR / 'static',
+]
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+# Media files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'  # Simplified path
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
+# CORS Configuration
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000", 
@@ -127,10 +133,10 @@ CORS_ALLOWED_ORIGINS = [
     "http://207.180.201.93",
     "http://127.0.0.1:8000",
     "http://207.180.201.93:3000",
-    "http://127.0.0.1:8000",
     "https://bothakgabjamahlako.com",
     "https://www.bothakgabjamahlako.com",
 ]
+
 CSRF_TRUSTED_ORIGINS = [
     "http://207.180.201.93",
     "http://localhost:3000",
@@ -140,7 +146,3 @@ CSRF_TRUSTED_ORIGINS = [
     "https://bothakgabjamahlako.com",
     "https://www.bothakgabjamahlako.com",
 ]
-
-# Media files
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media', 'static')
