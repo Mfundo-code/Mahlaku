@@ -1,4 +1,6 @@
-export const baseApiUrl = 'http://207.180.201.93/api';
+
+export const baseApiUrl = 'https://bothakgabjamahlako.com/api';
+
 
 export const categoryColors = {
   'School Uniform': '#4e73df',
